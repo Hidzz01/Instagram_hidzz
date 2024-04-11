@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <title>Instagram-Hidzz</title>
+  <style>
+    @import url("css/default.css");
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .main {
+      width: 100%;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 17%;
+      border-right: 1px solid #d6d6d6;
+      padding: 15px 0 0 25px;
+      position: fixed;
+      height: 100%;
+    }
+
+    .sidebar>li {
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    .sidebar>li>p {
+      margin-left: 20px;
+      margin-right: auto;
+      align-items: center;
+      font-size: 15px;
+    }
+
+    .sidebar>li:last-child {
+      margin-top: 120px;
+    }
+
+    .wrapper {
+      width: 83%;
+      display: flex;
+      margin-left: 235px;
+    }
+
+    .center {
+      width: 70%;
+    }
+
+    .status-wrapper {
+      height: 120px;
+      padding: 10px;
+    }
+
+    .status-card {
+      width: 70px;
+      align-items: center;
+      margin-right: 10px;
+    }
+
+    .profile-pic {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      overflow: hidden;
+      padding: 3px;
+      background: linear-gradient(45deg, rgb(255, 230, 0), rgb(255, 0, 128) 80%);
+    }
+
+    .profile-pic>img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .username {
+      width: 100%;
+      overflow: hidden;
+      text-align: center;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    /* Feed */
+    .feed {
+      width: 500px;
+      background-color: white;
+      border-radius: 8px;
+      font-size: 13px;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      height: auto;
+      margin-top: 20px;
+
+    }
+
+    .profile {
+      justify-content: space-between;
+      width: 100%;
+      padding: 15px;
+      box-sizing: border-box;
+
+    }
+
+    .profile>p {
+      margin-left: 18px;
+      margin-right: auto;
+    }
+
+    .profile>p>span:first-child {
+      font-weight: bold;
+      margin-bottom: 5px;
+      margin-right: auto;
+    }
+
+    .swiper {
+      width: 495px;
+    }
+    .swiper-button-prev, .swiper-button-next{
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background-color: rgb(199, 199, 199);
+    }
+    .swiper-button-prev:after, .swiper-button-next:after{
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+    .feed-icons{
+      width: 95%;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    .feed-icons > img{
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .feed-icons > img:last-child{
+      margin-left: auto;
+    }
+    .likes{
+      margin-right: auto;
+      margin-left: 16px;
+      font-weight: bold;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    .captions{
+      width: 95%;
+      margin-top: 5px;
+    }
+    .captions > .title{
+      font-weight: bold;
+    }
+    .captions > .hastag{
+      color: darkblue;
+    }
+    .count{
+      margin-right: auto;
+      margin-left: 16px;
+      margin-top: 10px;
+      color: lightgray;
+    }
+    .comment{
+      width: 95%;
+      border-bottom: 1px solid black;
+    }
+    /* Account start */
+
+    .account {
+      width: 30%;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .account-content {
+      width: 100%;
+    }
+
+    .sugessted>span {
+      color: gray;
+    }
+
+    .img-wrap>img {
+      border-radius: 50%;
+    }
+
+    .account-content>li {
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .account-content>li>p {
+      margin-right: auto;
+      margin-left: 20px;
+      align-items: flex-start;
+    }
+
+    .account-content>li>p>span:first-child {
+      font-weight: bold;
+      color: black;
+    }
+
+    .account-content>li>p>span:last-child {
+      color: gray;
+    }
+
+    .account-content>li>a {
+      color: #0095f6;
+      font-size: 13px;
+      margin-right: 65px;
+    }
+
+    .about {
+      margin-top: 30px;
+      margin-bottom: 20px;
+      margin-right: 65px;
+    }
+
+    .about>a {
+      color: lightgray;
+      font-size: 12px;
+      margin-right: 2px;
+    }
+
+    .name {
+      color: lightgray;
+      font-size: 12px;
+      margin-right: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <div class="sidebar">
+      <li>
+        <img width="102" src="image/Instagram/image/logo_instagram.png" alt="">
+      </li>
+
+      <li class="sidebar-content flex-row">
+        <img src="image/Instagram/image/icons/1.png" alt="">
+        <p class="bold">Home</p>
+      </li>
+
+      <li class="sidebar-content flex-row">
+        <img src="image/Instagram/image/icons/2.png" alt="">
+        <p class="bold">Search</p>
+      </li>
+
+      <li class="sidebar-content flex-row">
+        <img src="image/Instagram/image/icons/3.png" alt="">
+        <p class="bold">Create</p>
+      </li>
+
+      <li class="sidebar-content flex-row">
+        <img src="image/Instagram/image/icons/4.png" alt="">
+        <p class="bold">Explore</p>
+      </li>
+
+      <li class="sidebar-content flex-row">
+        <img src="image/Instagram/image/icons/5.png" alt="">
+        <p class="bold">Notifications</p>
+      </li>
+
+      <li class="sidebar-content flex-row">
+        <img width="24" src="image/Instagram/image/icons/6.png" alt="">
+        <p class="bold">Profile</p>
+      </li>
+
+      <li class="sidebar-content flex-row">
+        <img src="image/Instagram/image/icons/7.png" alt="">
+        <p class="bold">More</p>
+      </li>
+
+      <li class="sidebar-content flex-row">
+        <img src="image/Instagram/image/icons/8.png" alt="">
+        <p class="bold">Reels</p>
+      </li>
+
+      <li class="sidebar-content flex-row">
+        <img src="image/Instagram/image/icons/9.png" alt="">
+        <p class="bold">Messages</p>
+      </li>
+
+
+
+    </div>
+    <div class="wrapper">
+      <div class="center flex-col">
+        <div class="status-wrapper flex-row">
+
+          <div class="status-card flex-col">
+            <div class="profile-pic">
+              <img width="32" src="image/Instagram/image/follower/1.png" alt="">
+            </div>
+            <p class="username">Fujimiya Amane</p>
+          </div>
+
+          <div class="status-card flex-col">
+            <div class="profile-pic">
+              <img width="32" src="image/Instagram/image/follower/2.png" alt="">
+            </div>
+            <p class="username">riko dass</p>
+          </div>
+
+          <div class="status-card flex-col">
+            <div class="profile-pic">
+              <img width="32" src="image/Instagram/image/follower/3.png" alt="">
+            </div>
+            <p class="username">oooooo</p>
+          </div>
+
+          <div class="status-card flex-col">
+            <div class="profile-pic">
+              <img width="32" src="image/Instagram/image/follower/4.png" alt="">
+            </div>
+            <p class="username">jjjjjj</p>
+          </div>
+
+          <div class="status-card flex-col">
+            <div class="profile-pic">
+              <img width="32" src="image/Instagram/image/follower/5.png" alt="">
+            </div>
+            <p class="username">kjjjjj</p>
+          </div>
+
+          <div class="status-card flex-col">
+            <div class="profile-pic">
+              <img width="32" src="image/Instagram/image/follower/6.png" alt="">
+            </div>
+            <p class="username">mjjjjj</p>
+          </div>
+
+          <div class="status-card flex-col">
+            <div class="profile-pic">
+              <img width="32" src="image/Instagram/image/follower/7.png" alt="">
+            </div>
+            <p class="username">kkkkki</p>
+          </div>
+
+          <div class="status-card flex-col">
+            <div class="profile-pic">
+              <img width="32" src="image/Instagram/image/follower/8.png" alt="">
+            </div>
+            <p class="username">kkjkm</p>
+          </div>
+
+        </div>
+        <div class="feed flex-col">
+          <div class="profile flex-row">
+            <div class="img-wrap">
+              <img width="32" src="image/Instagram/image/profile/1.png" alt="">
+            </div>
+            <p class="flex-col">
+              <span>brosispku</span>
+              <span>Hokkaido</span>
+            </p>
+            <img width="20" src="image/Instagram/image/icons/10.png" alt="">
+          </div>
+          <div class="imgs swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"><img src="image/Instagram/image/post/1.png" alt=""></div>
+              <div class="swiper-slide"><img src="image/Instagram/image/post/2.png" alt=""></div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+          <div class="feed-icons flex-row">
+            <img id="heart" onclick="like()" src="image/Instagram/image/icons/11.png" alt="">
+            <img src="image/Instagram/image/icons/12.png" alt="">
+            <img src="image/Instagram/image/icons/13.png" alt="">
+            <img src="image/Instagram/image/icons/14.png" alt="">
+          </div>
+          <div class="likes">
+            15,386 likes
+          </div>
+          <div class="captions">
+            <span class="title">
+              shina
+            </span>
+            "Moshi Mos , hihi Ganbatte ne"
+            <span class="hastag">#Depin Boo</span>
+          </div>
+          <div class="count">
+            View all 2,256 comments
+          </div>
+          <div class="comment flex-row">
+            <div class="comment-box ">
+              <input type="text" name="" id="" placeholder="Add a comment">
+            </div>
+            <div class="imgs emoji-icons">
+                  <img src="image/Instagram/image/icons/12.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="account">
+        <div class="account-content">
+          <li class="flex-row">
+            <div class="img-wrap">
+              <img width="56" src="image/Instagram/image/profile/1.png" alt="">
+            </div>
+            <p class="flex-col">
+              <span>Hidzz_aja</span>
+              <span>Wahid Nurfian Afriyanto</span>
+            </p>
+            <a href="#">Switch</a>
+          </li>
+
+          <li class="flex-row sugessted">
+            <span>Sugessted For You</span>
+            <a href="#">See All</a>
+          </li>
+
+          <li class="friends flex-row">
+            <div class="img-wrap">
+              <img width="56" src="image/Instagram/image/follower/1.png" alt="">
+            </div>
+            <p class="flex-col">
+              <span>Shina Mahiru</span>
+              <span>Suggested For You</span>
+            </p>
+            <a href="#">Follow</a>
+          </li>
+
+          <li class="friends flex-row">
+            <div class="img-wrap">
+              <img width="56" src="image/Instagram/image/follower/2.png" alt="">
+            </div>
+            <p class="flex-col">
+              <span>Shina Mahiru</span>
+              <span>Suggested For You</span>
+            </p>
+            <a href="#">Follow</a>
+          </li>
+
+          <li class="friends flex-row">
+            <div class="img-wrap">
+              <img width="56" src="image/Instagram/image/follower/3.png" alt="">
+            </div>
+            <p class="flex-col">
+              <span>Shina Mahiru</span>
+              <span>Suggested For You</span>
+            </p>
+            <a href="#">Follow</a>
+          </li>
+
+          <li class="friends flex-row">
+            <div class="img-wrap">
+              <img width="56" src="image/Instagram/image/follower/4.png" alt="">
+            </div>
+            <p class="flex-col">
+              <span>Shina Mahiru</span>
+              <span>Suggested For You</span>
+            </p>
+            <a href="#">Follow</a>
+          </li>
+        </div>
+        <div class="about">
+          <a href="#">About</a>
+          <a href="#">Help</a>
+          <a href="#">Press</a>
+          <a href="#">API</a>
+          <a href="#">Jobs</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Location</a>
+          <a href="#">Languages</a>
+          <a href="#">Meta Verified</a>
+        </div>
+        <div class="name">
+          @ 2024 INSTAGRAM FROM META
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    let is_liked = true;
+        function like(){
+            if(is_liked == true){
+            $('#heart').attr('src', 'image/Instagram/image/icons/15.png')
+            is_liked = false;
+            }else{
+            $('#heart').attr('src', 'image/Instagram/image/icons/11.png')
+            is_liked = false;
+            }
+        
+        }
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+    });
+</script>
+</body>
+
+</html>
